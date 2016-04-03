@@ -1,0 +1,1 @@
+py -2 -m twine upload --skip-existing dist/*
