@@ -8,5 +8,9 @@ setup(
     url="https://github.com/janbrohl/BytesOp",
     version="0.3",
     description="Module for bitwise operations on bytestrings.",
-    ext_modules=[module]
+    ext_modules=[module],
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: BSD License"
+    ]
 )
