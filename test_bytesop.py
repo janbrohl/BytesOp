@@ -33,6 +33,24 @@ class TestOps(unittest.TestCase):
         a_and_b = bytesop.op_and(a, b)
         self.assertEqual(a_and_b, emu(operator.and_, a, b))
 
+    def test_nor(self):
+        a = os.urandom(1000)
+        b = os.urandom(1000)
+        a_nor_b = bytesop.op_nor(a, b)
+        self.assertEqual(a_nor_b, emu(operator.inv, emu(operator.or_, a, b)))
+
+    def test_xnor(self):
+        a = os.urandom(1000)
+        b = os.urandom(1000)
+        a_xnor_b = bytesop.op_xnor(a, b)
+        self.assertEqual(a_xnor_b, emu(operator.inv, emu(operator.xor, a, b)))
+
+    def test_nand(self):
+        a = os.urandom(1000)
+        b = os.urandom(1000)
+        a_nand_b = bytesop.op_nand(a, b)
+        self.assertEqual(a_nand_b, emu(operator.inv, emu(operator.and_, a, b)))
+
 
 if __name__ == '__main__':
     unittest.main()
