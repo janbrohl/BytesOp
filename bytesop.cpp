@@ -2,15 +2,10 @@
 #include <Python.h>
 
 #if PY_MAJOR_VERSION == 3
-#define IN1 "y#"
-#define IN2 "y#y#"
 #define OUT "y#"
-#define PYTHON3
 #endif
 
 #if PY_MAJOR_VERSION == 2
-#define IN1 "t#"
-#define IN2 "t#t#"
 #define OUT "s#"
 #endif
 
@@ -19,7 +14,7 @@ static PyObject * NAME(PyObject *self, PyObject *args){ \
 	char * a; \
 	char * b; \
 	Py_ssize_t a_size,b_size,out_size; \
-	if (!PyArg_ParseTuple(args, IN2, &a,&a_size,&b,&b_size)) \
+	if (!PyArg_ParseTuple(args, "s#s#", &a,&a_size,&b,&b_size)) \
         return NULL; \
 	if (b_size<a_size){ \
 		out_size=b_size; \
@@ -44,7 +39,7 @@ BYBYTESOP_FUNC(bytesop_op_and, &)
 static PyObject * bytesop_op_not(PyObject *self, PyObject *args){
 	char * a;
 	Py_ssize_t a_size, out_size;
-	if (!PyArg_ParseTuple(args, IN1, &a, &a_size))
+	if (!PyArg_ParseTuple(args, "s#", &a, &a_size))
 		return NULL;
 	out_size = a_size;
 	char * out = (char*)malloc(out_size);

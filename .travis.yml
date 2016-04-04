@@ -9,4 +9,4 @@ python:
   - "pypy"
   - "pypy3"
 install: true
-script: python setup.py build install
+script: python setup.py build install test
