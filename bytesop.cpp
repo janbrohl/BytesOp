@@ -13,40 +13,80 @@
 
 #define BYBYTESOP_FUNC(NAME,OP) \
 static PyObject * NAME(PyObject *self, PyObject *args){ \
+	Py_buffer ab,bb; \
 	char * a; \
 	char * b; \
-	Py_ssize_t a_size,b_size,out_size; \
-	if (!PyArg_ParseTuple(args, "s#s#", &a,&a_size,&b,&b_size)) \
+	char * out; \
+	Py_ssize_t out_size; \
+	if (!PyArg_ParseTuple(args, "s*s*", &ab,&bb)) \
         return NULL; \
-	if (b_size<a_size){ \
-		out_size=b_size; \
-			}else{ \
-		out_size=a_size; \
-			} \
-	char * out=(char*)malloc(out_size); \
+	if (ab.suboffsets!=NULL||ab.strides!=NULL){ \
+		PyBuffer_Release(&ab); \
+		PyBuffer_Release(&bb); \
+		PyErr_SetString(PyExc_ValueError,"First argument must export buffer as PyBUF_CONTIG_RO"); \
+		return NULL; \
+	} \
+	if (bb.suboffsets!=NULL||ab.strides!=NULL){ \
+		PyBuffer_Release(&ab); \
+		PyBuffer_Release(&bb); \
+		PyErr_SetString(PyExc_ValueError,"First argument must export buffer as PyBUF_CONTIG_RO"); \
+		return NULL; \
+	} \
+	Py_BEGIN_ALLOW_THREADS \
+	if (bb.len<ab.len){ \
+		out_size=bb.len; \
+	}else{ \
+		out_size=ab.len; \
+	} \
+	a=(char*)ab.buf; \
+	b=(char*)bb.buf; \
+	out=(char*)malloc(out_size); \
 	for (int i=0;i<out_size;i++){ \
 		out[i]=a[i] OP b[i]; \
-			} \
+	} \
+	PyBuffer_Release(&ab); \
+	PyBuffer_Release(&bb); \
+	Py_END_ALLOW_THREADS \
 	return Py_BuildValue(BO_OUT,out,out_size); \
 } \
 
 
 #define BYBYTESOP_N_FUNC(NAME,OP) \
 static PyObject * NAME(PyObject *self, PyObject *args){ \
+	Py_buffer ab,bb; \
 	char * a; \
 	char * b; \
-	Py_ssize_t a_size,b_size,out_size; \
-	if (!PyArg_ParseTuple(args, "s#s#", &a,&a_size,&b,&b_size)) \
+	char * out; \
+	Py_ssize_t out_size; \
+	if (!PyArg_ParseTuple(args, "s*s*", &ab,&bb)) \
         return NULL; \
-	if (b_size<a_size){ \
-		out_size=b_size; \
-			}else{ \
-		out_size=a_size; \
-			} \
-	char * out=(char*)malloc(out_size); \
+	if (ab.suboffsets!=NULL||ab.strides!=NULL){ \
+		PyBuffer_Release(&ab); \
+		PyBuffer_Release(&bb); \
+		PyErr_SetString(PyExc_ValueError,"First argument must export buffer as PyBUF_CONTIG_RO"); \
+		return NULL; \
+	} \
+	if (bb.suboffsets!=NULL||ab.strides!=NULL){ \
+		PyBuffer_Release(&ab); \
+		PyBuffer_Release(&bb); \
+		PyErr_SetString(PyExc_ValueError,"First argument must export buffer as PyBUF_CONTIG_RO"); \
+		return NULL; \
+	} \
+	Py_BEGIN_ALLOW_THREADS \
+	if (bb.len<ab.len){ \
+		out_size=bb.len; \
+	}else{ \
+		out_size=ab.len; \
+	} \
+	a=(char*)ab.buf; \
+	b=(char*)bb.buf; \
+	out=(char*)malloc(out_size); \
 	for (int i=0;i<out_size;i++){ \
 		out[i]=~(a[i] OP b[i]); \
-			} \
+	} \
+	PyBuffer_Release(&ab); \
+	PyBuffer_Release(&bb); \
+	Py_END_ALLOW_THREADS \
 	return Py_BuildValue(BO_OUT,out,out_size); \
 } \
 
@@ -65,15 +105,26 @@ BYBYTESOP_N_FUNC(bytesop_op_nand, &)
 
 
 static PyObject * bytesop_op_not(PyObject *self, PyObject *args){
+	Py_buffer b;
 	char * a;
-	Py_ssize_t a_size, out_size;
-	if (!PyArg_ParseTuple(args, "s#", &a, &a_size))
+	char * out;
+	Py_ssize_t out_size;
+	if (!PyArg_ParseTuple(args, "s*", &b))
 		return NULL;
-	out_size = a_size;
-	char * out = (char*)malloc(out_size);
+	if (b.suboffsets!=NULL||b.strides!=NULL){
+		PyBuffer_Release(&b);
+		PyErr_SetString(PyExc_ValueError,"Argument must export buffer as PyBUF_CONTIG_RO");
+		return NULL;
+	}
+	Py_BEGIN_ALLOW_THREADS 
+	a=(char*)b.buf;
+	out_size = b.len;
+	out = (char*)malloc(out_size);
 	for (int i = 0; i < out_size; i++){
 		out[i] = ~a[i];
 	}
+	PyBuffer_Release(&b);
+	Py_END_ALLOW_THREADS
 	return Py_BuildValue(BO_OUT, out, out_size);
 }
 
