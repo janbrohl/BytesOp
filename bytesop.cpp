@@ -131,24 +131,24 @@ static PyObject * bytesop_op_not(PyObject *self, PyObject *args){
 static PyMethodDef BytesOpMethods[] =
 {
 	{ "op_xor", bytesop_op_xor, METH_VARARGS,
-	"XOR two bytestrings." },
+	"XOR two bytes-like objects." },
 	{ "op_or", bytesop_op_or, METH_VARARGS,
-	"OR two bytestrings." },
+	"OR two bytes-like objects." },
 	{ "op_and", bytesop_op_and, METH_VARARGS,
-	"AND two bytestrings." },
+	"AND two bytes-like objects." },
 	{ "op_xnor", bytesop_op_xnor, METH_VARARGS,
-	"XNOR (NXOR) two bytestrings." },
+	"XNOR (NXOR) two bytes-like objects." },
 	{ "op_nor", bytesop_op_nor, METH_VARARGS,
-	"NOR two bytestrings." },
+	"NOR two bytes-like objects." },
 	{ "op_nand", bytesop_op_nand, METH_VARARGS,
-	"NAND two bytestrings." },
+	"NAND two bytes-like objects." },
 	{ "op_not", bytesop_op_not, METH_VARARGS,
-	"NOT a bytestring." },
+	"NOT a bytes-like object." },
 	{ NULL, NULL, 0, NULL }
 };
 
 #define BO_N "bytesop"
-#define BO_DOC "Bitwise operations on bytestrings"
+#define BO_DOC "Bitwise operations on bytes-like objects"
 
 #if PY_MAJOR_VERSION == 3
 static struct PyModuleDef bytesopmodule = {

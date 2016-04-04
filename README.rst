@@ -8,22 +8,22 @@ FUNCTIONS
 ---------
 
     op_and(...)
-        AND two bytestrings.
+        AND two bytes-like objects.
 
     op_nand(...)
-        NAND two bytestrings.
+        NAND two bytes-like objects.
 
     op_nor(...)
-        NOR two bytestrings.
+        NOR two bytes-like objects.
 
     op_not(...)
-        NOT a bytestring.
+        NOT a bytes-like object.
 
     op_or(...)
-        OR two bytestrings.
+        OR two bytes-like objects.
 
     op_xnor(...)
-        XNOR (NXOR) two bytestrings.
+        XNOR (NXOR) two bytes-like objects.
 
     op_xor(...)
-        XOR two bytestrings.
+        XOR two bytes-like objects.
