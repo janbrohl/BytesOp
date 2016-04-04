@@ -5,7 +5,7 @@ BytesOp
     :target: https://travis-ci.org/janbrohl/BytesOp
 
 FUNCTIONS
---------
+---------
     op_and(...)
         AND two bytestrings.
 
