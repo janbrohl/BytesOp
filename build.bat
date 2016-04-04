@@ -1,5 +1,5 @@
 del /s /q dist build BytesOp.egg-info
-c:\python27\scripts\autopep8.exe --in-place setup.py
+py -2 -m autopep8 --in-place setup.py test_bytesop.py
 py -2 setup.py test
 py -3 setup.py test
 py -2 setup.py sdist
