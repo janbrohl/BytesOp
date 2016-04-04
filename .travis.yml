@@ -8,9 +8,8 @@ python:
   - "3.5"
   - "pypy"
   - "pypy3"
-before_install:
-  - pip install codecov
-install: true
+install:
+ - pip install codecov
 script: python setup.py build install test
 after_success:
   - codecov
