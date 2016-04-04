@@ -8,9 +8,5 @@ python:
   - "3.5"
   - "pypy"
   - "pypy3"
-install:
- - pip install coverage
- - pip install codecov
-script: python setup.py build install && coverage run test_bytesop.py
-after_success:
-  - codecov
+install: true
+script: python setup.py build install test
