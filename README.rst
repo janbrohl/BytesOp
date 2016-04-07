@@ -4,8 +4,10 @@ BytesOp
 .. image:: https://travis-ci.org/janbrohl/BytesOp.svg?branch=master
     :target: https://travis-ci.org/janbrohl/BytesOp
 
-FUNCTIONS
----------
+BytesOp is an extension library providing fast bitwise operations on bytes-like objects for Python 2 and 3.
+
+Functions in module bytesop
+---------------------------
 
     op_and(...)
         AND two bytes-like objects.
