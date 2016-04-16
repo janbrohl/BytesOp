@@ -12,10 +12,10 @@ def to_bytes(it):
 
 
 def emu1(op, b):
-    return to_bytes(imap(op, bytearray(b))))
+    return to_bytes(imap(op, bytearray(b)))
 
 def emu2(op, a, b):
-    return to_bytes(imap(op, bytearray(a), bytearray(b))))
+    return to_bytes(imap(op, bytearray(a), bytearray(b)))
 
 
 def op_not(b):
