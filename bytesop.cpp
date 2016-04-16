@@ -131,19 +131,19 @@ static PyObject * bytesop_op_not(PyObject *self, PyObject *args){
 static PyMethodDef BytesOpMethods[] =
 {
 	{ "op_xor", bytesop_op_xor, METH_VARARGS,
-	"XOR two bytes-like objects." },
+	"(a, b)\nXOR two bytes-like objects." },
 	{ "op_or", bytesop_op_or, METH_VARARGS,
-	"OR two bytes-like objects." },
+	"(a, b)\nOR two bytes-like objects." },
 	{ "op_and", bytesop_op_and, METH_VARARGS,
-	"AND two bytes-like objects." },
+	"(a, b)\nAND two bytes-like objects." },
 	{ "op_xnor", bytesop_op_xnor, METH_VARARGS,
-	"XNOR (NXOR) two bytes-like objects." },
+	"(a, b)\nXNOR (NXOR) two bytes-like objects." },
 	{ "op_nor", bytesop_op_nor, METH_VARARGS,
-	"NOR two bytes-like objects." },
+	"(a, b)\nNOR two bytes-like objects." },
 	{ "op_nand", bytesop_op_nand, METH_VARARGS,
-	"NAND two bytes-like objects." },
+	"(a, b)\nNAND two bytes-like objects." },
 	{ "op_not", bytesop_op_not, METH_VARARGS,
-	"NOT a bytes-like object." },
+	"(b)\nNOT a bytes-like object." },
 	{ NULL, NULL, 0, NULL }
 };
 
