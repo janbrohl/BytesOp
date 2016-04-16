@@ -1,1 +1,1 @@
-include README.* LICENSE
+include *.rst LICENSE test*.py bytesop_pure.py
