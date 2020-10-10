@@ -3,9 +3,7 @@ BytesOp
 
 .. image:: https://travis-ci.org/janbrohl/BytesOp.svg?branch=master
     :target: https://travis-ci.org/janbrohl/BytesOp
-.. image:: https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg
-    :target: https://saythanks.io/to/janbrohl
-    
+`🍕Buy me a Pizza <https://www.buymeacoffee.com/janbrohl>`_
 
 BytesOp is an extension library providing fast bitwise operations on bytes-like objects for Python 2 and 3.
 
